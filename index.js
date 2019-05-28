@@ -20,8 +20,8 @@ io.on('connection', function(socket){
     console.log(sessionID,' left. Connections: ', connectCounter);
   });
 
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
+  socket.on('chat_message', function(msg){
+    io.emit('chat_message', msg);
   });
 
 });

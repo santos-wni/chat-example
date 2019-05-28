@@ -1,0 +1,12 @@
+config:
+  target: "http://localhost:3000/"
+  phases:
+    - duration: 10
+      arrivalRate: 2
+scenarios:
+  - engine: "socketio"
+    flow:
+      # - emit:
+      #     data: "Hello"
+      #     namespace: "/"
+      - think: 5
