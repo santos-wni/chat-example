@@ -9,21 +9,26 @@ app.get('/', function(req, res){
 });
 
 io.on('connection', function(socket){
-
   const sessionID = socket.id;
   connectCounter++;
 
-  console.log(sessionID,' joined. Connections: ', connectCounter);
+  socket.join('room', function(){
+    // console.log(sessionID, 'in room.');
+    let message = sessionID + ' joined the room.';
+    io.to('room').emit('chat_message', message);
+  });
+
+  console.log(sessionID,'joined. Connections:', connectCounter);
 
   socket.on('disconnect', function(){
     connectCounter--;
-    console.log(sessionID,' left. Connections: ', connectCounter);
+    console.log(sessionID,'left. Connections:', connectCounter);
   });
 
   socket.on('chat_message', function(msg){
-    io.emit('chat_message', msg);
+    io.to('room').emit('chat_message', msg);
+    console.log(sessionID, 'emit:', msg);
   });
-
 });
 
 http.listen(port, function(){

@@ -24,11 +24,6 @@
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
       $(function () {
-        // var socket = io('http://localhost');
-        // socket.on('connect', () => {
-        //   console.log(socket.connected);
-        //   console.log(socket.id);
-        // });
         var socket = io();
         $('form').submit(function(){
           socket.emit('chat_message', $('#m').val());
