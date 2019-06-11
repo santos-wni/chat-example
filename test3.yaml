@@ -1,0 +1,17 @@
+# Run: artillery run test3.yaml
+config:
+  target: "https://pt-wrap.wni.com"
+  socketio:
+    path: "/notif/socket/socket.io"
+    extraHeaders:
+      Cookie: "mod_auth_openidc_session=fae6e92b-daeb-45c1-8222-34946e7a5dcd"
+  phases:
+    - duration: 10
+      arrivalRate: 2
+scenarios:
+  - engine: "socketio"
+    flow:
+      # - emit:
+      #     channel: "room"
+      #     data: "Hello"
+      - think: 30
